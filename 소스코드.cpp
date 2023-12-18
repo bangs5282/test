@@ -29,10 +29,10 @@ public:
 
     bool isRight()
     {
-        if (x < 0 || x > 4)
+        if (x < 0 || x >= input[0].size())
             return false;
         
-        if (y < 0 || y > 4)
+        if (y < 0 || y >= input.size())
             return false;
 
         return true;
@@ -47,6 +47,7 @@ Position startPosition = { 0, 4 };
 Position endPosition = { 4, 0 };
 
 int answer = -1;
+int answer2 = INT_MAX;
 
 
 
@@ -82,6 +83,8 @@ void algorithm(Position nowPosition, int sum)
     if (nowPosition == endPosition) {
 
         answer = max(answer, sum);  // answer에 저장된 값과 주워온 사탕의 값중 더 큰값을 answer에 저장
+        answer2 = min(answer2, sum);
+
         return;
 
     }
@@ -107,7 +110,8 @@ void algorithm(Position nowPosition, int sum)
 void print()
 {
     // 정답 출력
-    cout << answer << endl;
+    cout << "최대 : " << answer << endl;
+    cout << "최소 : " << answer2 << endl;
 }
 
 
